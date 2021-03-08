@@ -21,8 +21,8 @@ private final AnimeRepository animeRepository;
     }
     public Mono<Anime> findById(int id) {
         return animeRepository.findById(id)
-            .switchIfEmpty(monoResponseStatusNotFoundException())
-                .log();
+            .switchIfEmpty(monoResponseStatusNotFoundException());
+
     }
     public <T> Mono<T> monoResponseStatusNotFoundException() {
       return Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime not Found"));
