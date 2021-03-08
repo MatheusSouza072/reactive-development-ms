@@ -26,7 +26,16 @@ public class GlobalExceptionHandler extends AbstractErrorWebExceptionHandler {
         this.setMessageWriters(codecConfigurer. getWriters());
     }
 
-    @Override  
+
+    /*
+    @Override
+    protected RouterFunction<ServerResponse> getRoutingFunction(ErrorAttributes errorAttributes) {
+        return RouterFunctions.route(RequestPredicates.all(), this::formatErrorResponse);
+    }
+
+    */
+     
+    @Override
     protected RouterFunction<ServerResponse> getRoutingFunction(ErrorAttributes errorAttributes) {
         return RouterFunctions.route(RequestPredicates.all(), this::formatErrorResponse);
     }
