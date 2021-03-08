@@ -25,7 +25,17 @@ private final AnimeRepository animeRepository;
 
     }
     public <T> Mono<T> monoResponseStatusNotFoundException() {
-      return Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime not Found"));
+        return Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime not found"));
     }
 
+    public Mono<Anime> save(Anime anime) {
+        return animeRepository.save(anime);
+    }
+
+    public Mono<Void> update(Anime anime) {
+        return findById(anime.getId())
+                .map(animeFound -> anime.withId(animeFound.getId()))
+                .flatMap(animeRepository::save)
+                .thenEmpty(Mono.empty());
+    }
 }
