@@ -11,17 +11,19 @@ import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
 
-@RequiredArgsConstructor
 @RestController
 @RequestMapping("animes")
 @Slf4j
+@RequiredArgsConstructor
 public class AnimeController {
+
     private final AnimeService animeService;
 
     @GetMapping
     public Flux<Anime> listAll() {
         return animeService.findAll();
     }
+
     @GetMapping(path = "{id}")
     public Mono<Anime> findById(@PathVariable int id) {
         return animeService.findById(id);
@@ -44,4 +46,5 @@ public class AnimeController {
     public Mono<Void> delete(@PathVariable int id){
         return animeService.delete(id);
     }
+
 }

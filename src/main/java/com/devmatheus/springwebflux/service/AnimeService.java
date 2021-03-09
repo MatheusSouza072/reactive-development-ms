@@ -10,6 +10,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class AnimeService {
 
@@ -22,7 +23,6 @@ public class AnimeService {
     public Mono<Anime> findById(int id) {
         return animeRepository.findById(id)
                 .switchIfEmpty(monoResponseStatusNotFoundException());
-
     }
 
     public <T> Mono<T> monoResponseStatusNotFoundException() {
@@ -43,5 +43,4 @@ public class AnimeService {
         return findById(id)
                 .flatMap(animeRepository::delete);
     }
-
 }
