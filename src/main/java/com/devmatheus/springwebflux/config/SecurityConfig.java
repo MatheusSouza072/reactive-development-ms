@@ -26,19 +26,8 @@ public class SecurityConfig {
         //@formatter:on
     }
 
-    @Bean
-    public MapReactiveUserDetailsService userDetailsService() {
-        PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        UserDetails user = User.withUsername("user")
-                .password(passwordEncoder.encode("devdojo"))
-                .roles("USER")
-                .build();
-
-        UserDetails admin = User.withUsername("admin")
-                .password(passwordEncoder.encode("devdojo"))
-                .roles("USER", "ADMIN")
-                .build();
-
-        return new MapReactiveUserDetailsService(user, admin);
+    ReactiveAuthenticationManager authenticationManager(DevDojoUserDetailsService devDojoUserDetailsService) {
+        return new UserDetailsRepositoryReactiveAuthenticationManager(devDojoUserDetailsService);
     }
+
 }

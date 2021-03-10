@@ -8,6 +8,7 @@ import org.springframework.core.ReactiveAdapterRegistry;
 
 public class SpringWebfluxApplication {
 
+        System.out.println(PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("devdojo"));
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringWebfluxApplication.class, args);
