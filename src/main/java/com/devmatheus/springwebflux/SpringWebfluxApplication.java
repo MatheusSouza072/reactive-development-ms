@@ -8,8 +8,10 @@ import org.springframework.core.ReactiveAdapterRegistry;
 
 public class SpringWebfluxApplication {
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(SpringWebfluxApplication.class, args);
 	}
+
 
 }

@@ -10,6 +10,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("animes")
@@ -43,6 +44,13 @@ public class AnimeController {
     public Mono<Void> update(@PathVariable int id, @Valid @RequestBody Anime anime){
         return animeService.update(anime.withId(id));
     }
+
+    @PostMapping("batch")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Flux<Anime> batchSave(@RequestBody List<Anime> animes){
+        return animeService.saveAll(animes);
+    }
+
 
     @DeleteMapping(path = "{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
