@@ -3,10 +3,10 @@ package com.devmatheus.springwebflux;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class SpringWebfluxApplicationTests {
 
-	@Test
+	//@Test
 	void contextLoads() {
 	}
 
